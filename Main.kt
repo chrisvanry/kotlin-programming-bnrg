@@ -18,18 +18,17 @@ fun main() {
     readBountyBoard()
 }
 
-private fun readBountyBoard() {
+private fun readBountyBoard() { // unit function, return type is "unit" (returns no value)
     println("The hero approaches the bounty board. It reads:")
-    println(obtainQuest(playerLevel, "paladin", true, false))
+    println(obtainQuest(playerLevel))
 }
 
 private fun obtainQuest(
     playerLevel: Int,
-    playerClass: String,
-    hasBefriendedBarbarians: Boolean,
-    hasAngeredBarbarians: Boolean
-): String {
-    val quest: String = when (playerLevel) {
+    playerClass: String = "paladin",
+    hasBefriendedBarbarians: Boolean = true,
+    hasAngeredBarbarians: Boolean = false // default value, can be omitted from other arguments, place at end of parameters
+): String = when (playerLevel) { // single-expression function, return type can be inferred, included for readability
         1 -> "Meet Mr. Bubbles in the land of soft things."
         in 2..5 -> {
             // Check whether diplomacy is an option
@@ -46,5 +45,3 @@ private fun obtainQuest(
         8 -> "Defeat Nogartse, bringer of death and eater of worlds."
         else -> "There are no quests right now."
     }
-    return quest
-}
